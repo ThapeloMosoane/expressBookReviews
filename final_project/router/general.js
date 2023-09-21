@@ -36,16 +36,12 @@ public_users.post("/register", (req,res) => {
   else
       return res.status(404).json({message: "Error unable to register user."});
 
-  //return res.status(300).json({message: "Yet to be implemented"});
 });
 
 // Get the book list available in the shop
 public_users.get('/',function (req, res) {
   //Write your code here
-    //res.send(JSON.stringify(books));
     res.send(JSON.stringify({books},null,4));
-
-  //return res.status(300).json({message: "Yet to be implemented"});
 });
 
 
@@ -72,10 +68,8 @@ public_users.get('/books',async function (req, res) {
 public_users.get('/isbn/:isbn',function (req, res) {
   //Write your code here
   const isbn = req.params.isbn;
-  //let filteredBooks = books.filter((books) => books.isbn === isbn);
-  //res.send(filteredBooks);
   res.send(books[isbn]);
-  //return res.status(300).json({message: "Yet to be implemented"});  
+
  });
   
 
@@ -111,7 +105,7 @@ public_users.get('/author/:author',function (req, res) {
     }
   });
   res.send(JSON.stringify({filteredBooks}, null, 4));
-  //return res.status(300).json({message: "Yet to be implemented"});
+
 });
 
 // Get book details based on author asynchronously
@@ -135,7 +129,6 @@ public_users.get('/author/:author', async function (req, res) {
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
   //Write your code here
-  //const title = req.params.title;
   let filteredBooks = [];
   let isbns = Object.keys(books);
   isbns.forEach((isbn) => {
@@ -147,7 +140,7 @@ public_users.get('/title/:title',function (req, res) {
     }
   });
   res.send(JSON.stringify({filteredBooks}, null, 4));
-  //return res.status(300).json({message: "Yet to be implemented"});
+
 });
 
 // Get all books based on title asynchronously
@@ -171,21 +164,9 @@ public_users.get('/title/:title',async function (req, res) {
 //  Get book review
 public_users.get('/review/:isbn',function (req, res) {
   //Write your code here
-/*   const author = req.params.title;
-  let filteredReviews = [];
-  let isbns = Object.keys(books);
-  isbns.forEach((isbn) => {
-    if(books[isbn] === req.params.isbn) {
-      filteredBooks.push({//"isbn":isbn,
-                          //"author":books[isbn]["author"],
-                          //"title":books[isbn]["title"],
-                          "reviews":books[isbn]["reviews"]});
-    }
-  });
-  res.send(JSON.stringify({filteredReviews}, null, 4)); */
   const isbn = req.params.isbn;
   res.send(books[isbn]["reviews"])
-  //return res.status(300).json({message: "Yet to be implemented"});
+
 });
 
 module.exports.general = public_users;
