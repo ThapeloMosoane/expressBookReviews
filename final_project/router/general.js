@@ -94,22 +94,22 @@ public_users.get('/asyncisbn/:isbn', async function (req, res) {
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
   //Write your code here
-  let filteredBooks = [];
+  let booksByAuthor = [];
   let isbns = Object.keys(books);
   isbns.forEach((isbn) => {
     if(books[isbn]["author"] === req.params.author) {
-      filteredBooks.push({//"isbn":isbn,
+      booksByAuthor.push({//"isbn":isbn,
                           "author":books[isbn]["author"],
                           "title":books[isbn]["title"],
                           "reviews":books[isbn]["reviews"]});
     }
   });
-  res.send(JSON.stringify({filteredBooks}, null, 4));
+  res.send(JSON.stringify({booksByAuthor}, null, 4));
 
 });
 
 // Get book details based on author asynchronously
-public_users.get('/author/:author', async function (req, res) {
+public_users.get('/asyncauthor/:author', async function (req, res) {
   try {
     const author = req.params.author;
     // Make a GET request to fetch data from the books API
@@ -129,22 +129,22 @@ public_users.get('/author/:author', async function (req, res) {
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
   //Write your code here
-  let filteredBooks = [];
+  let booksByTitle = [];
   let isbns = Object.keys(books);
   isbns.forEach((isbn) => {
     if(books[isbn]["title"] === req.params.title) {
-      filteredBooks.push({//"isbn":isbn,
+      booksByTitle.push({//"isbn":isbn,
                           "author":books[isbn]["author"],
                           "title":books[isbn]["title"],
                           "reviews":books[isbn]["reviews"]});
     }
   });
-  res.send(JSON.stringify({filteredBooks}, null, 4));
+  res.send(JSON.stringify({booksByTitle}, null, 4));
 
 });
 
 // Get all books based on title asynchronously
-public_users.get('/title/:title',async function (req, res) {
+public_users.get('/asynctitle/:title',async function (req, res) {
   try {
     const title = req.params.title;
     // Make a GET request to fetch data from the books API
